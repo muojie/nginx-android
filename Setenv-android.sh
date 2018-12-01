@@ -8,15 +8,15 @@
 #   and http://wiki.openssl.org/index.php/Android
 
 #####################################################################
-export ANDROID_NDK_ROOT=$HOME/Library/Android/sdk/ndk-bundle
+export ANDROID_NDK_ROOT=$HOME/android-ndk-r10e
 # Set ANDROID_NDK_ROOT to you NDK location. For example,
 # /opt/android-ndk-r8e or /opt/android-ndk-r9. This can be done in a
 # login script. If ANDROID_NDK_ROOT is not specified, the script will
 # try to pick it up with the value of _ANDROID_NDK_ROOT below. If
 # ANDROID_NDK_ROOT is set, then the value is ignored.
 # _ANDROID_NDK="android-ndk-r8e"
-_ANDROID_NDK="android-ndk-r9"
-# _ANDROID_NDK="android-ndk-r10"
+#_ANDROID_NDK="android-ndk-r9"
+_ANDROID_NDK="android-ndk-r10e"
 
 # Set _ANDROID_EABI to the EABI you want to use. You can find the
 # list in $ANDROID_NDK_ROOT/toolchains. This value is always used.

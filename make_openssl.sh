@@ -27,7 +27,7 @@ KERNEL_BITS=32 ./config shared no-ssl2 no-ssl3 no-comp no-hw no-engine \
      --openssldir=$OPENSSL_DIR --prefix=$OPENSSL_DIR
 make depend
 make all
-make install CC=$ANDROID_TOOLCHAIN/arm-linux-androideabi-gcc RANLIB=$ANDROID_TOOLCHAIN/arm-linux-androideabi-ranlib
+make install_sw CC=$ANDROID_TOOLCHAIN/arm-linux-androideabi-gcc RANLIB=$ANDROID_TOOLCHAIN/arm-linux-androideabi-ranlib
 
 cd ..
 exec >/dev/tty
