@@ -13,17 +13,11 @@ CROSS_COMPILE_GCC="$ANDROID_TOOLCHAIN/$CROSS_COMPILE"gcc
 export DESTDIR=$START_DIR
 export CC_AUX_FLAGS="--sysroot=$ANDROID_SYSROOT"
 
-NGINX_SRC_PKG=$(p_find ".*nginx-[0-9]+\.[0-9]+\.[0-9]+\.tar\.gz")
-if [ -z $NGINX_SRC_PKG ]; then
-    echo "Can't find nginx source package! Aborting." >/dev/tty
+NGINX_SRC_DIR=$(p_find ".*nginx-[0-9]+\.[0-9]+\.[0-9]*")
+if [ -z $NGINX_SRC_DIR ]; then
+    echo "Can't find nginx source directory! Aborting." >/dev/tty
     exit 1
 fi
-NGINX_SRC_DIR=${NGINX_SRC_PKG%.tar.gz}
-if [ -d $NGINX_SRC_DIR ]; then
-	rm -r $NGINX_SRC_DIR
-fi
-tar xzf $NGINX_SRC_PKG
-command -v adb >/dev/null 2>&1 || { echo >&2 "This script needs adb, but it's not found. Install it and add its path to `PATH`. Aborting." >/dev/tty; exit 1; }
 cd $NGINX_SRC_DIR
 
 # modify the auto files and run autotests on Android using adb
@@ -57,7 +51,7 @@ sed -i -e 's@#include <ngx_core.h>@&\
 #include <openssl/des.h>@' $_SRC_OS_UNIX_DIR/ngx_user.c
 sed -i -e 's@value = crypt((char \*) key, (char \*) salt);@value = DES_crypt((char \*) key, (char \*) salt);@' $_SRC_OS_UNIX_DIR/ngx_user.c
 
-./configure \
+./auto/configure \
 --crossbuild=android-arm \
 --prefix=/sdcard/nginx \
 --with-http_ssl_module \
