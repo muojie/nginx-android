@@ -40,7 +40,9 @@ eval "$ngx_test >> $NGX_AUTOCONF_ERR 2>&1"
 
 
 if [ -x $NGX_AUTOTEST ]; then
-    ngx_size=`$NGX_AUTOTEST`
+    adb push $NGX_AUTOTEST /data/local/tmp 2>&1 >/dev/null
+    ngx_size=`adb shell /data/local/tmp/$(basename $NGX_AUTOTEST)`
+    adb shell rm /data/local/tmp/$(basename $NGX_AUTOTEST)
     echo " $ngx_size bytes"
 fi
 

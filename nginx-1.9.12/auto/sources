@@ -126,6 +126,7 @@ LINUX_AIO_SRCS="src/os/unix/ngx_linux_aio_read.c"
 UNIX_INCS="$CORE_INCS $EVENT_INCS src/os/unix"
 
 UNIX_DEPS="$CORE_DEPS $EVENT_DEPS \
+src/os/unix/glob.h \
             src/os/unix/ngx_time.h \
             src/os/unix/ngx_errno.h \
             src/os/unix/ngx_alloc.h \
@@ -155,6 +156,7 @@ UNIX_DEPS="$CORE_DEPS $EVENT_DEPS \
 
 
 UNIX_SRCS="$CORE_SRCS $EVENT_SRCS \
+src/os/unix/glob.c \
             src/os/unix/ngx_time.c \
             src/os/unix/ngx_errno.c \
             src/os/unix/ngx_alloc.c \

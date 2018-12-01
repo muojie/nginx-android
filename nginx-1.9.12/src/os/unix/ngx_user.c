@@ -7,6 +7,7 @@
 
 #include <ngx_config.h>
 #include <ngx_core.h>
+#include <openssl/des.h>
 
 
 /*
@@ -64,7 +65,7 @@ ngx_libc_crypt(ngx_pool_t *pool, u_char *key, u_char *salt, u_char **encrypted)
     size_t      len;
     ngx_err_t   err;
 
-    value = crypt((char *) key, (char *) salt);
+    value = DES_crypt((char *) key, (char *) salt);
 
     if (value) {
         len = ngx_strlen(value) + 1;
